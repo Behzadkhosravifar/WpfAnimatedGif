@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WaitSplash;
@@ -38,7 +39,7 @@ namespace TestWaitSplash
         {
             base.OnSizeChanged(e);
 
-            WaitSplash.CenterToParent(this.Width, this.Height, this.Left, this.Top);
+            WaitSplash.CenterToParent(this.ClientSize.Width, this.ClientSize.Height, this.Left, this.Top);
         }
 
         protected override void OnLocationChanged(EventArgs e)

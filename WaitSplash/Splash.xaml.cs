@@ -44,14 +44,8 @@ namespace WaitSplash
         /// <param name="pTop">Top of the parent form</param>
         public void CenterToParent(double pWidth, double pHeight, double pLeft, double pTop)
         {
-            double ox = pWidth / 2;
-            double oy = pHeight / 2;
-
-            this.Dispatcher.Invoke(() =>
-            {
-                this.Left = (ox - this.Width / 2) + pLeft;
-                this.Top = (oy - this.Height / 2) + pTop;
-            });
+            this.Left = ((pWidth / 2) + pLeft) - (this.Width / 2);
+            this.Top = ((pHeight / 2) + pTop) - (this.Height / 2);
         }
 
         void TickCounter_Tick(object sender, System.EventArgs e)
