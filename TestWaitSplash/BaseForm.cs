@@ -46,7 +46,7 @@ namespace TestWaitSplash
         {
             base.OnLocationChanged(e);
 
-            WaitSplash.CenterToParent(this.Width, this.Height, this.Left, this.Top);
+            WaitSplash.CenterToParent(this.ClientSize.Width, this.ClientSize.Height, this.Left, this.Top);
         }
 
 
