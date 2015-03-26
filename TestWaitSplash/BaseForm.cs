@@ -15,6 +15,7 @@ namespace TestWaitSplash
         {
             InitializeComponent();
 
+            WaitSplash.OwnerControl = this;
 
             Application.Idle += Application_Idle;
         }
@@ -39,14 +40,14 @@ namespace TestWaitSplash
         {
             base.OnSizeChanged(e);
 
-            WaitSplash.CenterToParent(this.ClientSize.Width, this.ClientSize.Height, this.Left, this.Top);
+            WaitSplash.CenterToParent(this);
         }
 
         protected override void OnLocationChanged(EventArgs e)
         {
             base.OnLocationChanged(e);
 
-            WaitSplash.CenterToParent(this.ClientSize.Width, this.ClientSize.Height, this.Left, this.Top);
+            WaitSplash.CenterToParent(this);
         }
 
 
