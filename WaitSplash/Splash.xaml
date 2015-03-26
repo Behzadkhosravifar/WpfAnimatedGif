@@ -12,8 +12,12 @@
         <Image Stretch="Fill"
                        gif:ImageBehavior.AnimatedSource="ajax_loader_metal_300.gif"
                        gif:ImageBehavior.RepeatBehavior="Forever"
-                       gif:ImageBehavior.AutoStart="True"/>
-        <TextBlock x:Name="lblTimeNo" HorizontalAlignment="Center" Height="50" Margin="0" TextWrapping="Wrap" Text="0" VerticalAlignment="Center" Width="85" FontWeight="Bold" TextAlignment="Center" FontSize="48" Foreground="#FFFEDD7A" FontFamily="Digital-7">
+                       gif:ImageBehavior.AutoStart="True" Margin="10">
+            <Image.Effect>
+                <DropShadowEffect Direction="0" ShadowDepth="0" BlurRadius="8"/>
+            </Image.Effect>
+        </Image>
+        <TextBlock x:Name="lblTimeNo" HorizontalAlignment="Center" Height="50" Margin="0" TextWrapping="Wrap" Text="0" VerticalAlignment="Center" Width="85" FontWeight="Bold" TextAlignment="Center" FontSize="48" Foreground="#FFFEDD7A" FontFamily="/WaitSplash;component/Fonts/#Digital-7">
             <TextBlock.Effect>
                 <DropShadowEffect Direction="0" ShadowDepth="0" Color="#FFE6C500" BlurRadius="8"/>
             </TextBlock.Effect>
