@@ -16,6 +16,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WaitSplash", "WaitSplash\Wa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestWaitSplash", "TestWaitSplash\TestWaitSplash.csproj", "{E4E75330-9BBE-4D21-A328-770931CE26E2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPFInWinForm", "WPFInWinForm\WPFInWinForm.csproj", "{8D5580D7-EC5B-419A-BDF1-5855C888EF3C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -54,6 +56,14 @@ Global
 		{E4E75330-9BBE-4D21-A328-770931CE26E2}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E4E75330-9BBE-4D21-A328-770931CE26E2}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{E4E75330-9BBE-4D21-A328-770931CE26E2}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{8D5580D7-EC5B-419A-BDF1-5855C888EF3C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8D5580D7-EC5B-419A-BDF1-5855C888EF3C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8D5580D7-EC5B-419A-BDF1-5855C888EF3C}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{8D5580D7-EC5B-419A-BDF1-5855C888EF3C}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{8D5580D7-EC5B-419A-BDF1-5855C888EF3C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8D5580D7-EC5B-419A-BDF1-5855C888EF3C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8D5580D7-EC5B-419A-BDF1-5855C888EF3C}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{8D5580D7-EC5B-419A-BDF1-5855C888EF3C}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

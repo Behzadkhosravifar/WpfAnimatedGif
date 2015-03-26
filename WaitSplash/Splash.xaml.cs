@@ -56,7 +56,7 @@ namespace WaitSplash
 
             // Set the owned WPF window’s owner with the non-WPF owner window
             WindowInteropHelper helper = new WindowInteropHelper(this);
-            helper.Owner = ownerWindowHandle;
+            helper.Owner = ownerWindowHandle; 
 
             // Center window
             // Note - Need to use HwndSource to get handle to WPF owned window,
