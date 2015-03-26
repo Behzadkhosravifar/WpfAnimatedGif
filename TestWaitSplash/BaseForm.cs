@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Drawing;
-using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Windows.Media.Imaging;
 using WaitSplash;
 
 namespace TestWaitSplash
@@ -28,10 +25,10 @@ namespace TestWaitSplash
         {
             Application.Idle -= Application_Idle;
 
-            await ParallelInvoke(OnStartupAction);
+            await InvokeAsync(OnStartupAction);
         }
 
-        public async Task ParallelInvoke(Action doSomething)
+        public async Task InvokeAsync(Action doSomething)
         {
             WaitSplash.Start();
 
