@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Globalization;
 using System.Security.Permissions;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Interop;
 using System.Windows.Threading;
@@ -56,7 +57,7 @@ namespace WaitSplash
 
             // Set the owned WPF window’s owner with the non-WPF owner window
             WindowInteropHelper helper = new WindowInteropHelper(this);
-            helper.Owner = ownerWindowHandle; 
+            helper.Owner = ownerWindowHandle;
 
             // Center window
             // Note - Need to use HwndSource to get handle to WPF owned window,
@@ -122,27 +123,39 @@ namespace WaitSplash
 
         public void Start()
         {
-            lock (SyncLocker)
+            Task.Run(() =>
             {
-                if (++ShowTimes == 1)
+                lock (SyncLocker)
                 {
-                    TickCount = Environment.TickCount;
-                    TickCounter.Start();
-                    this.Show();
+                    if (++ShowTimes == 1)
+                    {
+                        this.Dispatcher.Invoke(() =>
+                        {
+                            TickCount = Environment.TickCount;
+                            TickCounter.Start();
+                            this.Show();
+                        });
+                    }
                 }
-            }
+            });
         }
 
         public void Stop()
         {
-            lock (SyncLocker)
+            Task.Run(() =>
             {
-                if (--ShowTimes <= 0)
+                lock (SyncLocker)
                 {
-                    this.Hide();
-                    TickCounter.Stop();
+                    if (--ShowTimes <= 0)
+                    {
+                        this.Dispatcher.Invoke(() =>
+                        {
+                            this.Hide();
+                            TickCounter.Stop();
+                        });
+                    }
                 }
-            }
+            });
         }
 
         #endregion

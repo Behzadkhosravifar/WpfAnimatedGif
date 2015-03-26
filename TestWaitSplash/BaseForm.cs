@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Drawing;
+using System.Runtime.CompilerServices;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Media.Imaging;
 using WaitSplash;
 
 namespace TestWaitSplash
@@ -9,6 +12,7 @@ namespace TestWaitSplash
     public partial class BaseForm : Form
     {
         public static Splash WaitSplash = new Splash();
+
         public Action OnStartupAction;
 
         public BaseForm()
@@ -20,20 +24,31 @@ namespace TestWaitSplash
             Application.Idle += Application_Idle;
         }
 
-        void Application_Idle(object sender, EventArgs e)
+        async void Application_Idle(object sender, EventArgs e)
         {
             Application.Idle -= Application_Idle;
 
-            ParallelInvoke(OnStartupAction);
+            await ParallelInvoke(OnStartupAction);
         }
 
-        public async void ParallelInvoke(Action doSomething)
+        public async Task ParallelInvoke(Action doSomething)
         {
             WaitSplash.Start();
 
-            if (doSomething != null) await Task.Run(doSomething);
+            if (doSomething != null)
+            {
+                await Task.Run(() =>
+                {
+                    var invokeThread = new Thread(new ThreadStart(doSomething));
+                    invokeThread.SetApartmentState(ApartmentState.STA);
+                    invokeThread.Start();
+                    invokeThread.Join();
+                });
+            }
 
             WaitSplash.Stop();
+
+            this.Focus();
         }
 
         protected override void OnSizeChanged(EventArgs e)
