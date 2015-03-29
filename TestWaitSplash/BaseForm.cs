@@ -8,7 +8,7 @@ namespace TestWaitSplash
 {
     public partial class BaseForm : Form
     {
-        public static Splash WaitSplash = new Splash();
+        public static Splash WaitSplash;
 
         public Action OnStartupAction;
 
@@ -16,7 +16,7 @@ namespace TestWaitSplash
         {
             InitializeComponent();
 
-            WaitSplash.OwnerControl = this;
+            WaitSplash = new Splash(this);
 
             Application.Idle += Application_Idle;
         }
@@ -46,28 +46,6 @@ namespace TestWaitSplash
             WaitSplash.Stop();
 
             this.Focus();
-        }
-
-        protected override void OnSizeChanged(EventArgs e)
-        {
-            base.OnSizeChanged(e);
-
-            WaitSplash.CenterToParent(this);
-        }
-
-        protected override void OnLocationChanged(EventArgs e)
-        {
-            base.OnLocationChanged(e);
-
-            WaitSplash.CenterToParent(this);
-        }
-
-
-        protected override void OnActivated(EventArgs e)
-        {
-            base.OnActivated(e);
-
-            WaitSplash.Focus();
         }
     }
 }

@@ -27,7 +27,7 @@ namespace WaitSplash
 
         #region Constructors
 
-        public Splash()
+        protected Splash()
         {
             this.InitializeComponent();
 
@@ -40,6 +40,22 @@ namespace WaitSplash
 
             TickCounter = new DispatcherTimer();
             TickCounter.Tick += TickCounter_Tick;
+        }
+
+        public Splash(System.Windows.Window win)
+            : this()
+        {
+            Owner = win;
+            win.SizeChanged += (s, e) => this.CenterToParent(win);
+            win.LocationChanged += (s, e) => this.CenterToParent(win);
+        }
+
+        public Splash(System.Windows.Forms.Form parentForm)
+            : this()
+        {
+            OwnerControl = parentForm;
+            parentForm.SizeChanged += (s, e) => this.CenterToParent(parentForm);
+            parentForm.LocationChanged += (s, e) => this.CenterToParent(parentForm);
         }
 
         #endregion
@@ -156,6 +172,13 @@ namespace WaitSplash
                     }
                 }
             });
+        }
+
+        protected override void OnLostFocus(RoutedEventArgs e)
+        {
+            base.OnLostFocus(e);
+
+            this.Focus();
         }
 
         #endregion
