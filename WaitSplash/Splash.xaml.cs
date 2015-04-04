@@ -139,39 +139,33 @@ namespace WaitSplash
 
         public void Start()
         {
-            Task.Run(() =>
+            lock (SyncLocker)
             {
-                lock (SyncLocker)
+                if (++ShowTimes == 1)
                 {
-                    if (++ShowTimes == 1)
+                    this.Dispatcher.Invoke(() =>
                     {
-                        this.Dispatcher.Invoke(() =>
-                        {
-                            TickCount = Environment.TickCount;
-                            TickCounter.Start();
-                            this.Show();
-                        });
-                    }
+                        TickCount = Environment.TickCount;
+                        TickCounter.Start();
+                        this.Show();
+                    });
                 }
-            });
+            }
         }
 
         public void Stop()
         {
-            Task.Run(() =>
+            lock (SyncLocker)
             {
-                lock (SyncLocker)
+                if (--ShowTimes <= 0)
                 {
-                    if (--ShowTimes <= 0)
+                    this.Dispatcher.Invoke(() =>
                     {
-                        this.Dispatcher.Invoke(() =>
-                        {
-                            this.Hide();
-                            TickCounter.Stop();
-                        });
-                    }
+                        this.Hide();
+                        TickCounter.Stop();
+                    });
                 }
-            });
+            }
         }
 
         protected override void OnLostFocus(RoutedEventArgs e)

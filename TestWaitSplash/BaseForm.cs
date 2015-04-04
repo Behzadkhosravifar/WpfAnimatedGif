@@ -16,6 +16,8 @@ namespace TestWaitSplash
         {
             InitializeComponent();
 
+            CheckForIllegalCrossThreadCalls = false;
+
             WaitSplash = new Splash(this);
 
             Application.Idle += Application_Idle;
@@ -27,6 +29,7 @@ namespace TestWaitSplash
 
             await InvokeAsync(OnStartupAction);
         }
+
 
         public async Task InvokeAsync(Action doSomething)
         {

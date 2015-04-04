@@ -24,8 +24,7 @@ namespace TestWaitSplash
 
         public void OnStartup()
         {
-            var ofd = new OpenFileDialog();
-
+            OpenFileDialog ofd = new OpenFileDialog();
             ofd.ShowDialog();
 
             ServerTransmitter.CreateDatabaseAsync().GetAwaiter().GetResult();
@@ -34,7 +33,7 @@ namespace TestWaitSplash
             {
                 using (var cmd = sqlConn.CreateCommand())
                 {
-                    for (var i = 0; i < 100; i++)
+                    for (var i = 0; i < 10000; i++)
                     {
                         var rand = new Random();
                         cmd.CommandText = string.Format(@"INSERT INTO [TestTable]
@@ -66,10 +65,13 @@ namespace TestWaitSplash
 
                     sqlConn.Close();
 
-                    if (dataGridView1.IsHandleCreated)
-                        dataGridView1.Invoke(new Action(() => dataGridView1.DataSource = dt));
+                    //if (dataGridView1.IsHandleCreated)
+                    //    dataGridView1.Invoke(new Action(() => dataGridView1.DataSource = dt));
+                    dataGridView1.DataSource = dt;
                 }
             }
+
+
         }
     }
 }
